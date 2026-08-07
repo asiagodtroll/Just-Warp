@@ -180,7 +180,7 @@ public final class JustWarpService {
 
     public synchronized void teleport(ServerPlayer player, String warpName) throws WarpException {
         Warp warp = availableState().requireWarp(warpName);
-        WarpLocation previous = playerLocation(player);
+        WarpLocation previous = PlayerLocations.capture(player);
         teleportService.teleport(player, warp, config);
         backHistory.remember(player.getUUID(), previous);
     }
@@ -189,7 +189,7 @@ public final class JustWarpService {
         availableState();
         WarpLocation target = backHistory.find(player.getUUID())
                 .orElseThrow(() -> new WarpException("error.back_missing"));
-        WarpLocation previous = playerLocation(player);
+        WarpLocation previous = PlayerLocations.capture(player);
         teleportService.teleport(player, new Warp("back", "system", "", "minecraft:barrier", target), config);
         backHistory.remember(player.getUUID(), previous);
     }
@@ -204,11 +204,6 @@ public final class JustWarpService {
             throw new WarpException("error.storage_unavailable", unavailableReason);
         }
         return state;
-    }
-
-    private static WarpLocation playerLocation(ServerPlayer player) {
-        return new WarpLocation(player.level().dimension().identifier().toString(), player.getX(), player.getY(),
-                player.getZ(), player.getYRot(), player.getXRot());
     }
 
     private static String message(IOException exception) {

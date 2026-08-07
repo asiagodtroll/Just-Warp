@@ -3,7 +3,7 @@
 JustWarp is a server-side Fabric mod for managing grouped warps through commands and read-only chest menus. Vanilla
 clients can use it without installing the mod.
 
-[繁體中文](docs/README_zh-tw.md) · [Configuration](docs/config.md)
+[繁體中文](docs/README_zh-tw.md) · [Configuration](docs/config.md) · [Changelog](CHANGELOG.md)
 
 ## Requirements
 
@@ -36,8 +36,10 @@ Place JustWarp and Fabric API in the server's `mods` directory. Configuration is
 | `/jw icon set <name> <base64>` | Update a custom icon | Admin |
 | `/jw reload` | Validate and reload JSON data | Admin |
 
-The default admin permission level is 2. Names are case-sensitive Unicode words without whitespace. Icons accept a
-custom icon name or an item ID such as `minecraft:stone`. Use `none` to remove a warp from its group.
+The default admin permission level is 2. Names are case-sensitive Unicode words without whitespace. Unicode and
+special-character text values must be quoted; tab completion inserts and escapes those quotes automatically. For
+example: `/jw warp del "傳送點"` or `/jw warp set "傳送點" description "中文 description"`. Icons accept a custom
+icon name or a quoted namespaced item ID such as `"minecraft:stone"`. Use `none` to remove a warp from its group.
 
 ## Behavior
 

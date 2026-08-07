@@ -2,7 +2,7 @@
 
 JustWarp 是透過指令與唯讀箱子選單管理群組傳送點的純伺服器端 Fabric 模組 原版客戶端不需要安裝模組
 
-[English](../README.md) · [設定說明](config.md)
+[English](../README.md) · [設定說明](config.md) · [變更紀錄](../CHANGELOG.md)
 
 ## 環境需求
 
@@ -35,8 +35,10 @@ JustWarp 是透過指令與唯讀箱子選單管理群組傳送點的純伺服�
 | `/jw icon set <名稱> <base64>` | 更新自訂圖示 | 管理員 |
 | `/jw reload` | 驗證並重新載入 JSON | 管理員 |
 
-預設管理權限等級為 2 名稱區分大小寫、支援 Unicode 且不可包含空白 圖示可使用自訂名稱或
-`minecraft:stone` 等物品 ID 使用 `none` 可移除傳送點群組
+預設管理權限等級為 2 名稱區分大小寫、支援 Unicode 且不可包含空白 中文、空白與特殊字元文字值
+必須使用雙引號 Tab 補全會自動加入並跳脫引號 例如 `/jw warp del "傳送點"` 或
+`/jw warp set "傳送點" description "中文說明"` 圖示可使用自訂名稱或加引號的 namespaced 物品 ID
+例如 `"minecraft:stone"` 使用 `none` 可移除傳送點群組
 
 ## 主要行為
 

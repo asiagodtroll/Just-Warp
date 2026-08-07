@@ -4,7 +4,6 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.ChatFormatting;
-import net.minecraft.server.level.ServerPlayer;
 import io.github.asiagodtroll.justwarp.gui.WarpGui;
 import io.github.asiagodtroll.justwarp.service.JustWarpService;
 
@@ -49,11 +48,8 @@ final class CommonCommands {
     }
 
     private int back(CommandContext<CommandSourceStack> context) {
-        ServerPlayer player = context.getSource().getPlayer();
-        if (player == null) {
-            return support.fail(context.getSource(), "error.player_only");
-        }
-        return support.execute(context.getSource(), () -> manager.back(player), "success.back");
+        return support.withPlayer(context, player ->
+                support.execute(context.getSource(), () -> manager.back(player), "success.back"));
     }
 
     private int reload(CommandContext<CommandSourceStack> context) {

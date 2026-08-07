@@ -1,6 +1,10 @@
 {
   "mod.name": "JustWarp",
-  "error.arguments": "\u6307\u4ee4\u53c3\u6578\u7121\u6548\uff0c\u8acb\u4f7f\u7528 /jw help \u67e5\u770b\u6307\u4ee4\u683c\u5f0f\u3002",
+  "suggest.warp": "傳送點",
+  "suggest.group": "傳送點群組",
+  "suggest.custom_icon": "自訂圖示",
+  "suggest.item_icon": "原版物品圖示",
+  "suggest.no_group": "移出目前群組",
   "gui.root.title": "傳送點",
   "gui.warps.title": "所有傳送點",
   "gui.groups.title": "所有群組",
@@ -57,5 +61,5 @@
   "help.user.title": "JustWarp 指令說明",
   "help.admin.title": "管理指令",
   "help.user": "/jw: 開啟主選單\n/jw warp: 瀏覽所有傳送點\n/jw group: 瀏覽所有群組\n/jw icon: 瀏覽自訂圖示\n/jw back: 返回上一個位置\n/jw help: 顯示此說明",
-  "help.admin": "/jw warp add <名稱> <圖示> [群組]: 新增傳送點\n/jw warp del <名稱>: 刪除傳送點\n/jw warp set <名稱> position: 更新傳送點位置\n/jw warp set <名稱> <name|group|icon|author|description> <值>: 更新傳送點欄位\n/jw group add <名稱> <圖示>: 新增群組\n/jw group del <名稱>: 刪除群組\n/jw group set <名稱> <name|icon> <值>: 更新群組欄位\n/jw icon add <名稱> <base64>: 新增自訂圖示\n/jw icon del <名稱>: 刪除自訂圖示\n/jw icon set <名稱> <new_base64>: 更新自訂圖示\n/jw reload: 重新載入設定與資料"
+  "help.admin": "/jw warp add <名稱> <圖示> [群組]: 新增傳送點\n/jw warp del <名稱>: 刪除傳送點\n/jw warp set <名稱> position: 更新傳送點位置\n/jw warp set <名稱> <name|group|icon|author|description> <值>: 更新傳送點欄位\n/jw group add <名稱> <圖示>: 新增群組\n/jw group del <名稱>: 刪除群組\n/jw group set <名稱> <name|icon> <值>: 更新群組欄位\n/jw icon add <名稱> <base64>: 新增自訂圖示\n/jw icon del <名稱>: 刪除自訂圖示\n/jw icon set <名稱> <new_base64>: 更新自訂圖示\n/jw reload: 重新載入設定與資料\n中文、空白與特殊字元文字值請加雙引號，Tab 補全會自動加入。"
 }

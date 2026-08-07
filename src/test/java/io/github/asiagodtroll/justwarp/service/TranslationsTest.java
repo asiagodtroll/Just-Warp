@@ -41,6 +41,13 @@ class TranslationsTest {
         assertEquals("missing.key", translations.text("missing.key"));
     }
 
+    @Test
+    void bundledLocalesDefineTheSameKeys() throws Exception {
+        JsonStore store = new JsonStore(temporary.resolve("justwarp"));
+
+        assertEquals(store.loadLanguage("en_US").keySet(), store.loadLanguage("zh_TW").keySet());
+    }
+
     private static void assertHighlightedArgument(Component message, String expected) {
         Component content = message.getSiblings().get(2);
         Component argument = content.getSiblings().get(1);

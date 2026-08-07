@@ -22,7 +22,11 @@
   "error.back_missing": "You do not have a previous warp location.",
   "error.storage_unavailable": "JustWarp data is unavailable. Reason: %s. Fix the indicated JSON value, then run /jw reload.",
   "error.name": "Name must be a non-whitespace Unicode word between 1 and 64 characters.",
-  "error.arguments": "Invalid command arguments. Use /jw help for the command syntax.",
+  "suggest.warp": "Warp",
+  "suggest.group": "Warp group",
+  "suggest.custom_icon": "Custom icon",
+  "suggest.item_icon": "Vanilla item icon",
+  "suggest.no_group": "Remove from its group",
   "error.author": "Author must contain 1–64 characters.",
   "error.description": "Description must contain at most 256 characters.",
   "error.reserved_name": "The name 'none' is reserved.",
@@ -57,5 +61,5 @@
   "help.user.title": "JustWarp Commands",
   "help.admin.title": "Management Commands",
   "help.user": "/jw: open the main menu\n/jw warp: browse all warps\n/jw group: browse all groups\n/jw icon: browse custom icons\n/jw back: return to the previous location\n/jw help: show this help",
-  "help.admin": "/jw warp add <name> <icon> [group]: add a warp\n/jw warp del <name>: delete a warp\n/jw warp set <name> position: update a warp position\n/jw warp set <name> <name|group|icon|author|description> <value>: update a warp field\n/jw group add <name> <icon>: add a group\n/jw group del <name>: delete a group\n/jw group set <name> <name|icon> <value>: update a group field\n/jw icon add <name> <base64>: add a custom icon\n/jw icon del <name>: delete a custom icon\n/jw icon set <name> <new_base64>: update a custom icon\n/jw reload: reload configuration and data"
+  "help.admin": "/jw warp add <name> <icon> [group]: add a warp\n/jw warp del <name>: delete a warp\n/jw warp set <name> position: update a warp position\n/jw warp set <name> <name|group|icon|author|description> <value>: update a warp field\n/jw group add <name> <icon>: add a group\n/jw group del <name>: delete a group\n/jw group set <name> <name|icon> <value>: update a group field\n/jw icon add <name> <base64>: add a custom icon\n/jw icon del <name>: delete a custom icon\n/jw icon set <name> <new_base64>: update a custom icon\n/jw reload: reload configuration and data\nQuote Unicode, spaced, and special-character text values; tab completion adds quotes automatically."
 }

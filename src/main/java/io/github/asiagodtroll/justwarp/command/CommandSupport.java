@@ -1,6 +1,5 @@
 package io.github.asiagodtroll.justwarp.command;
 
-import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.level.ServerPlayer;
@@ -9,6 +8,7 @@ import io.github.asiagodtroll.justwarp.service.JustWarpService;
 
 import java.io.IOException;
 import java.util.function.Consumer;
+import java.util.function.ToIntFunction;
 
 final class CommandSupport {
     private final JustWarpService manager;
@@ -39,27 +39,25 @@ final class CommandSupport {
     }
 
     int openGui(CommandContext<CommandSourceStack> context, Consumer<ServerPlayer> opener) {
+        return withPlayer(context, player -> {
+            if (!manager.available()) {
+                return fail(context.getSource(), "error.storage_unavailable", manager.unavailableReason());
+            }
+            opener.accept(player);
+            return 1;
+        });
+    }
+
+    int withPlayer(CommandContext<CommandSourceStack> context, ToIntFunction<ServerPlayer> action) {
         ServerPlayer player = context.getSource().getPlayer();
         if (player == null) {
             return fail(context.getSource(), "error.player_only");
         }
-        if (!manager.available()) {
-            return fail(context.getSource(), "error.storage_unavailable", manager.unavailableReason());
-        }
-        opener.accept(player);
-        return 1;
+        return action.applyAsInt(player);
     }
 
     boolean hasAdminPermission(CommandSourceStack source) {
         return AdminPermissionPolicy.allows(source, manager.config().adminPermissionLevel());
-    }
-
-    static String value(CommandContext<CommandSourceStack> context, String key) {
-        return StringArgumentType.getString(context, key);
-    }
-
-    static String nullableGroup(String value) {
-        return value.equalsIgnoreCase("none") ? null : value;
     }
 
     @FunctionalInterface
