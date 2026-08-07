@@ -1,0 +1,91 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+}
+
+version = project.mod_version
+group = project.maven_group
+
+loom {
+	mods {
+		"justwarp" {
+			sourceSet sourceSets.main
+		}
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+	testImplementation platform("org.junit:junit-bom:5.12.2")
+	testImplementation "org.junit.jupiter:junit-jupiter"
+	testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+}
+
+test {
+	useJUnitPlatform()
+}
+
+tasks.register("checkSourceFormatting") {
+	group = "verification"
+	description = "Checks source files against the repository EditorConfig conventions."
+	doLast {
+		def violations = []
+		fileTree("src") {
+			include "**/*.java", "**/*.json"
+		}.each { source ->
+			source.readLines("UTF-8").eachWithIndex { line, index ->
+				if (line.contains("\t")) violations << "${source}:${index + 1}: tab character"
+				if (line != line.stripTrailing()) violations << "${source}:${index + 1}: trailing whitespace"
+				if (source.name.endsWith(".java") && line.length() > 120) {
+					violations << "${source}:${index + 1}: ${line.length()} characters (maximum 120)"
+				}
+				if (source.name.endsWith(".java") && line ==~ /\s*import\s+[^;]*\.\*;.*/) {
+					violations << "${source}:${index + 1}: wildcard import"
+				}
+				if (source.name.endsWith(".java")) {
+					def control = line =~ /^\s*(if|for|while)\s*\([^(){}]*\)\s*(.+)$/
+					if (control.matches() && !control.group(2).startsWith("{")
+							&& !control.group(2).startsWith(";")) {
+						violations << "${source}:${index + 1}: control flow without braces"
+					}
+				}
+			}
+		}
+		if (!violations.isEmpty()) {
+			throw new GradleException("Source formatting violations:\n" + violations.join("\n"))
+		}
+	}
+}
+
+check.dependsOn tasks.named("checkSourceFormatting")
+
+processResources {
+	def version = project.version
+	inputs.property "version", version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+}
+
+java {
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+	def projectName = project.name
+	inputs.property "projectName", projectName
+
+	from("LICENSE") {
+		rename { "${it}_$projectName"}
+	}
+}

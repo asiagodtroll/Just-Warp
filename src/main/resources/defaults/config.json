@@ -1,0 +1,11 @@
+{
+  "plugin": {
+    "locale": "zh_TW",
+    "admin-permission-level": 2
+  },
+  "warp": {
+    "teleport-safety": 1,
+    "safe-search-radius": 5,
+    "safe-search-vertical-range": 3
+  }
+}

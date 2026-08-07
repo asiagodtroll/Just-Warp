@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "justwarp",
+  "version": "${version}",
+  "name": "JustWarp",
+  "description": "A server-side chest GUI for grouped, configurable warps.",
+  "authors": [
+    "AsiaGodTroll"
+  ],
+  "license": "MIT",
+  "icon": "assets/justwarp/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "io.github.asiagodtroll.justwarp.JustWarpMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "~26.2",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
