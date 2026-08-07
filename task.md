@@ -27,10 +27,11 @@
 
 ## Balanced best-practice review
 
+- [x] Synchronize `AGENTS.md` with the established command, localization, persistence, review, and release workflows
 - [x] Cache immutable vanilla item suggestions instead of rebuilding them for every completion request
 - [x] Cover quoted Chinese suggestions and localized tooltips through reloaded service state
 - [x] Enforce matching translation keys across bundled locales with an automated test
-- [x] Publish the complete v1.0.1 Added, Fixed, and Removed changelog relative to v1.0.0
+- [x] Publish the complete v1.0.1 Added, Changed, Fixed, and Removed changelog relative to v1.0.0
 - [x] Keep GUI action handling local while only two flows need it; a shared abstraction would add more indirection
 - [x] Keep explicit persistence parsing while the schema remains small and strongly validated
 - [x] Keep mutation services separate because their atomic write boundaries differ

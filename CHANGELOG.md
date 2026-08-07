@@ -13,6 +13,11 @@
   vanilla-client argument synchronization, and matching bundled locale keys.
 - Added English and Traditional Chinese documentation for the quoted command syntax.
 
+### Changed
+
+- Updated `AGENTS.md` and `task.md` to codify the established command, localization, persistence, iterative review,
+  verification, and release workflows.
+
 ### Fixed
 
 - Fixed Chinese names interrupting Brigadier parsing and preventing later command fields from being suggested.
